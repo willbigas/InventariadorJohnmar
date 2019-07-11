@@ -5,6 +5,8 @@
  */
 package inventariadorjohnmar;
 
+import control.TelaEscolherArquivoControl;
+
 /**
  *
  * @author William
@@ -16,6 +18,9 @@ public class InventariadorJohnmar {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        TelaEscolherArquivoControl controlArquivo = new TelaEscolherArquivoControl();
+        
+        
     }
     
 }
