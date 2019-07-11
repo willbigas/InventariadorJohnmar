@@ -1,5 +1,6 @@
 package control;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.Produto;
@@ -18,14 +19,17 @@ public class TelaConferenciaControl {
     List<Produto> produtosDoExcel;
     List<Produto> produtosParaExportar;
 
+    Integer indiceDoProdutoNaLista = null;
+
     public TelaConferenciaControl(List<Produto> produtosRecebidos) {
         produtoTableModel = new ProdutoTableModel();
         produtosDoExcel = produtosRecebidos;
-
+        produtosParaExportar = new ArrayList<>();
     }
 
     public void chamarTelaConferencia() {
         telaConferencia = new TelaConferencia(this);
+        telaConferencia.setLocationRelativeTo(null);
         inicializaTableModelDeProdutos();
         telaConferencia.setVisible(true);
     }
@@ -41,26 +45,46 @@ public class TelaConferenciaControl {
             return;
         }
         Integer quantidade = Integer.valueOf(telaConferencia.getTfQuantidade().getText());
-        produto = identificaItem();
+        produto = processaQuantidades(quantidade);
 
-        System.out.println(produto);
     }
 
-    public Produto identificaItem() {
+    public Produto processaQuantidades(Integer quantidade) {
         String codigo = telaConferencia.getTfCodigo().getText();
-        for (Produto umProduto : produtosDoExcel) {
-            if (codigo.equals(umProduto.getEan13())) {
-                return umProduto;
+        Produto produtoBuscado = null;
+
+        for (int i = 0; i < produtosDoExcel.size(); i++) {
+            Produto umProduto = produtosDoExcel.get(i);
+
+            if (codigo.equalsIgnoreCase(umProduto.getEan13())) {
+                produtoBuscado = umProduto;
+                System.out.println("Produto encontrado pelo EAN13:" + produtoBuscado);
+                indiceDoProdutoNaLista = i;
+                if (produtoBuscado.getQtdConferida() == null) {
+                    produtoBuscado.setQtdConferida(0);
+                }
+                produtoBuscado.setQtdConferida(produtoBuscado.getQtdConferida() + (quantidade * 1));
+                produtoTableModel.atualizar(i, produtoBuscado);
+                continue;
             }
-            if (codigo.equals(umProduto.getDun14())) {
-                return umProduto;
-            }
-            if (!codigo.equals(umProduto.getEan13()) && !codigo.equals(umProduto.getDun14())) {
-                return null;
+            if (codigo.equalsIgnoreCase(umProduto.getDun14())) {
+                produtoBuscado = umProduto;
+                System.out.println("Produto encontrado pelo DUN14:" + produtoBuscado);
+                if (produtoBuscado.getQtdConferida() == null) {
+                    produtoBuscado.setQtdConferida(0);
+                }
+                produtoBuscado.setQtdConferida(produtoBuscado.getQtdConferida() + (quantidade * produtoBuscado.getQtdDun14()));
+                produtoTableModel.atualizar(i, produto);
+                produtosParaExportar.add(produto);
             }
         }
-        return null;
+        return produtoBuscado;
 
+    }
+
+    public void exportarListaParaExcelAction() {
+        TelaEscolherArquivoControl.acionaSalvamentoDeArquivo(telaConferencia);
+        TelaEscolherArquivoControl.escreverArquivoParaExcel(produtosParaExportar);
     }
 
 }

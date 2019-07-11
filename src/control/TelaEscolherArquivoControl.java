@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import model.Produto;
@@ -68,7 +69,7 @@ public class TelaEscolherArquivoControl {
         }
     }
 
-    public void acionaSalvamentoDeArquivo() {
+    public static void acionaSalvamentoDeArquivo(JFrame frame) {
         /**
          * Janela de Salvar - JFileChooser - Para salvar arquivos em geral.
          */
@@ -77,7 +78,7 @@ public class TelaEscolherArquivoControl {
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "Arquivos xls - Excel 2007 ou superior", "xlsx");
         chooser.setFileFilter(filter);
-        int returnVal = chooser.showSaveDialog(telaEscolherArquivo);
+        int returnVal = chooser.showSaveDialog(frame);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             String nomeArquivo = chooser.getSelectedFile().getName();
             enderecoDestino = chooser.getSelectedFile().getPath();
@@ -102,16 +103,14 @@ public class TelaEscolherArquivoControl {
             XSSFSheet sheetAlunos = workbook.getSheetAt(0);
 
             Iterator<Row> rowIterator = sheetAlunos.iterator();
-            Row proximaLinha = rowIterator.next();
-            int contagemDeLinhas = sheetAlunos.getLastRowNum();
-            short contagemDeColunas = proximaLinha.getLastCellNum();
+            int contagemDeColunas = sheetAlunos.getRow(0).getLastCellNum();
 
-            if (contagemDeColunas == 7) {
-                while (rowIterator.hasNext()) {
-                    Row row = rowIterator.next();
-                    Iterator<Cell> cellIterator = row.cellIterator();
-                    produto = new Produto();
-                    listProdutos.add(produto);
+            while (rowIterator.hasNext()) {
+                Row row = rowIterator.next();
+                Iterator<Cell> cellIterator = row.cellIterator();
+                produto = new Produto();
+                listProdutos.add(produto);
+                if (row.getLastCellNum() == 6) {
                     while (cellIterator.hasNext()) {
                         Cell cell = cellIterator.next();
                         switch (cell.getColumnIndex()) {
@@ -132,21 +131,14 @@ public class TelaEscolherArquivoControl {
                                 break;
                             case LOCALIZACAO:
                                 produto.setLocalizacao(pegaValorDaCelula(cell));
-                                break;
-                            case QTD_ESTOQUE:
                                 produto.setQtdEstoque(0);
                                 break;
+
                         }
                     }
-                }
 
-            } else {
+                } else {
 
-                while (rowIterator.hasNext()) {
-                    Row row = rowIterator.next();
-                    Iterator<Cell> cellIterator = row.cellIterator();
-                    produto = new Produto();
-                    listProdutos.add(produto);
                     while (cellIterator.hasNext()) {
                         Cell cell = cellIterator.next();
                         switch (cell.getColumnIndex()) {
@@ -169,28 +161,27 @@ public class TelaEscolherArquivoControl {
                                 produto.setLocalizacao(pegaValorDaCelula(cell));
                                 break;
                             case QTD_ESTOQUE:
-                                produto.setQtdEstoque(Integer.valueOf(pegaValorDaCelula(cell)));
+                                produto.setQtdEstoque(Integer.valueOf(pegaValorDaCelula(cell).replace(".", "")));
                                 break;
+
                         }
                     }
+
                 }
 
             }
-            
-            
 
             for (int i = 0; i < listProdutos.size(); i++) {
                 Produto get = listProdutos.get(i);
                 get.setEan13(get.getEan13().replace(".", ""));
                 get.setDun14(get.getDun14().replace(".", ""));
-                get.setEan13(get.getEan13().substring(0, get.getEan13().length()-3));
-                get.setDun14(get.getDun14().substring(0, get.getDun14().length()-3));
+                get.setEan13(get.getEan13().substring(0, get.getEan13().length() - 3));
+                get.setDun14(get.getDun14().substring(0, get.getDun14().length() - 3));
                 listProdutos.set(i, get);
             }
-            for (int i = 0; i < listProdutos.size(); i++) {
-                Produto get = listProdutos.get(i);
-                System.out.println("Um Produto lido : " + get);
 
+            for (Produto listProduto : listProdutos) {
+                System.out.println(listProduto);
             }
             arquivo.close();
             JOptionPane.showMessageDialog(telaEscolherArquivo, "Arquivo excel lido com sucesso!");
@@ -201,7 +192,7 @@ public class TelaEscolherArquivoControl {
         }
     }
 
-    public void escreverArquivoParaExcel(List<Produto> produtos) {
+    public static void escreverArquivoParaExcel(List<Produto> produtos) {
 
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheetAlunos = workbook.createSheet("Alunos");
@@ -282,10 +273,6 @@ public class TelaEscolherArquivoControl {
                 return String.valueOf(cell.getNumericCellValue());
             case STRING:
                 return String.valueOf(cell.getStringCellValue());
-            case BLANK:
-                return "0";
-            case _NONE:
-                return "0";
             default:
                 return null;
         }

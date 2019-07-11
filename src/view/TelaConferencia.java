@@ -6,6 +6,7 @@
 package view;
 
 import control.TelaConferenciaControl;
+import control.TelaEscolherArquivoControl;
 import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -51,6 +52,7 @@ public class TelaConferencia extends javax.swing.JFrame {
         tfCodigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btAdicionar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProdutos = new javax.swing.JTable();
@@ -60,19 +62,26 @@ public class TelaConferencia extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Produto"));
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("QUANTIDADE");
+        tfQuantidade.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("QTD");
+
+        tfCodigo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tfCodigoKeyReleased(evt);
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("EAN13 / DUN 14");
 
         btAdicionar.setText("ADICIONAR");
+
+        jButton1.setText("RECONTAR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -86,10 +95,12 @@ public class TelaConferencia extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tfCodigo)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btAdicionar)
-                .addGap(376, 376, 376))
+                .addGap(293, 293, 293)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,12 +113,14 @@ public class TelaConferencia extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btAdicionar))
+                    .addComponent(btAdicionar)
+                    .addComponent(jButton1))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabela de Produtos"));
 
+        tblProdutos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -138,7 +151,7 @@ public class TelaConferencia extends javax.swing.JFrame {
                 .addGap(143, 143, 143))
         );
 
-        btExportarExcel.setText("Exportar Excel");
+        btExportarExcel.setText("EXPORTAR");
         btExportarExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExportarExcelActionPerformed(evt);
@@ -169,7 +182,7 @@ public class TelaConferencia extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btExportarExcel)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -177,6 +190,7 @@ public class TelaConferencia extends javax.swing.JFrame {
 
     private void btExportarExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExportarExcelActionPerformed
         // TODO add your handling code here:
+        telaConferenciaControl.exportarListaParaExcelAction();
     }//GEN-LAST:event_btExportarExcelActionPerformed
 
     private void tfCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCodigoKeyReleased
@@ -224,6 +238,7 @@ public class TelaConferencia extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAdicionar;
     private javax.swing.JButton btExportarExcel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -170,5 +170,9 @@ public class ProdutoTableModel extends AbstractTableModel {
         linhas.clear();
         fireTableDataChanged(); // atualiza toda tabela.
     }
+    
+    public List<Produto> retornaLista(){
+        return this.linhas;
+    }
 
 }

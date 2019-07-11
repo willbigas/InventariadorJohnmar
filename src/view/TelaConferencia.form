@@ -47,7 +47,7 @@
               <Component id="jPanel2" min="-2" pref="314" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btExportarExcel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="12" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,11 +74,13 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="tfCodigo" max="32767" attributes="0"/>
-                      <Component id="jLabel2" max="32767" attributes="0"/>
+                      <Component id="jLabel2" pref="403" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btAdicionar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="376" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="293" max="-2" attributes="0"/>
+                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -95,6 +97,7 @@
                       <Component id="tfQuantidade" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btAdicionar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
@@ -103,20 +106,36 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="tfQuantidade">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="14" style="0"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="18" style="1"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="QUANTIDADE"/>
+            <Property name="text" type="java.lang.String" value="QTD"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfCodigo">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="14" style="0"/>
+            </Property>
+          </Properties>
           <Events>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfCodigoKeyReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="18" style="1"/>
+            </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="EAN13 / DUN 14"/>
           </Properties>
@@ -124,6 +143,11 @@
         <Component class="javax.swing.JButton" name="btAdicionar">
           <Properties>
             <Property name="text" type="java.lang.String" value="ADICIONAR"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="RECONTAR"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -167,6 +191,9 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="tblProdutos">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="14" style="0"/>
+                </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="4">
                     <Column editable="true" title="Title 1" type="java.lang.Object"/>
@@ -183,7 +210,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="btExportarExcel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Exportar Excel"/>
+        <Property name="text" type="java.lang.String" value="EXPORTAR"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btExportarExcelActionPerformed"/>
