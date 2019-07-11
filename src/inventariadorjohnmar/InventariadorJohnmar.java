@@ -6,6 +6,8 @@
 package inventariadorjohnmar;
 
 import control.TelaEscolherArquivoControl;
+import javax.swing.JOptionPane;
+import uteis.InterfaceJanela;
 
 /**
  *
@@ -18,6 +20,11 @@ public class InventariadorJohnmar {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        try {
+            InterfaceJanela.MudaSwingParaPadraoDoSO();
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(null, "Não consegui alterar o componente do swing para seu sistema operacional , chame o programador!");
+        }
         TelaEscolherArquivoControl controlArquivo = new TelaEscolherArquivoControl();
         
         
