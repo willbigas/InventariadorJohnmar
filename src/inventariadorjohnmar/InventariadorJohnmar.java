@@ -26,8 +26,7 @@ public class InventariadorJohnmar {
             JOptionPane.showMessageDialog(null, "Não consegui alterar o componente do swing para seu sistema operacional , chame o programador!");
         }
         TelaEscolherArquivoControl controlArquivo = new TelaEscolherArquivoControl();
-        
-        
+
     }
-    
+
 }

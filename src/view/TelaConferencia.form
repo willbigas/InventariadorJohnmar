@@ -33,8 +33,8 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="btGravar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Component id="btExportarExcel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -45,8 +45,8 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" pref="314" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btGravar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btExportarExcel" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="12" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -68,20 +68,17 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jLabel1" pref="127" max="32767" attributes="0"/>
                       <Component id="tfQuantidade" max="32767" attributes="0"/>
-                      <Component id="jLabel1" pref="74" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="tfCodigo" max="32767" attributes="0"/>
                       <Component id="jLabel2" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="tfNome" max="32767" attributes="0"/>
-                      <Component id="jLabel3" pref="625" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="btAdicionar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="376" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -89,23 +86,15 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="tfNome" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="tfQuantidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tfCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="tfQuantidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btAdicionar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
@@ -118,10 +107,13 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="QTD"/>
+            <Property name="text" type="java.lang.String" value="QUANTIDADE"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfCodigo">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfCodigoKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -129,13 +121,10 @@
             <Property name="text" type="java.lang.String" value="EAN13 / DUN 14"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JButton" name="btAdicionar">
           <Properties>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="NOME"/>
+            <Property name="text" type="java.lang.String" value="ADICIONAR"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="tfNome">
         </Component>
       </SubComponents>
     </Container>
@@ -153,7 +142,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="1010" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="1027" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -192,10 +181,13 @@
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btGravar">
+    <Component class="javax.swing.JButton" name="btExportarExcel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="GRAVAR"/>
+        <Property name="text" type="java.lang.String" value="Exportar Excel"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btExportarExcelActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

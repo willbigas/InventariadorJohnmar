@@ -9,9 +9,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import model.Produto;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.CellValue;
 import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
@@ -47,19 +49,6 @@ public class TelaEscolherArquivoControl {
         telaEscolherArquivo = new TelaEscolherArquivo(this);
         telaEscolherArquivo.setLocationRelativeTo(null);
         telaEscolherArquivo.setVisible(true);
-    }
-
-    public void escreverArqAction() {
-
-//        try {
-//            for (String novasLinha : novasLinhas) {
-//                Arquivo.escreverArqConcat(enderecoDestino + ".csv", novasLinha);
-//            }
-//            JOptionPane.showMessageDialog(null, "Conversão executada com sucesso!");
-//
-//        } catch (Exception exception) {
-//            JOptionPane.showMessageDialog(null, "Erro na converão , chame o desenvolvedor!");
-//        }
     }
 
     public void acionaAberturaDeArquivo() {
@@ -113,46 +102,89 @@ public class TelaEscolherArquivoControl {
             XSSFSheet sheetAlunos = workbook.getSheetAt(0);
 
             Iterator<Row> rowIterator = sheetAlunos.iterator();
+            Row proximaLinha = rowIterator.next();
+            int contagemDeLinhas = sheetAlunos.getLastRowNum();
+            short contagemDeColunas = proximaLinha.getLastCellNum();
 
-            while (rowIterator.hasNext()) {
-                Row row = rowIterator.next();
-                Iterator<Cell> cellIterator = row.cellIterator();
-
-                produto = new Produto();
-                listProdutos.add(produto);
-                while (cellIterator.hasNext()) {
-                    Cell cell = cellIterator.next();
-                    switch (cell.getColumnIndex()) {
-
-                        case SKU:
-                            produto.setSku(cell.getStringCellValue());
-                            break;
-                        case NOME:
-                            produto.setNome(cell.getStringCellValue());
-                            break;
-                        case EAN13:
-                            produto.setEan13(pegaValorDaCelula(workbook, cell));
-                            break;
-                        case DUN14:
-                            produto.setDun14(pegaValorDaCelula(workbook, cell));
-                            break;
-                        case QTD_DUN14:
-                            produto.setQtdDun14((int) Double.parseDouble(pegaValorDaCelula(workbook, cell)));
-                            break;
-                        case LOCALIZACAO:
-                            produto.setLocalizacao(pegaValorDaCelula(workbook, cell));
-                            break;
-                        case QTD_ESTOQUE:
-                            produto.setQtdEstoque((int) Double.parseDouble(pegaValorDaCelula(workbook, cell)));
-                            break;
-
+            if (contagemDeColunas == 7) {
+                while (rowIterator.hasNext()) {
+                    Row row = rowIterator.next();
+                    Iterator<Cell> cellIterator = row.cellIterator();
+                    produto = new Produto();
+                    listProdutos.add(produto);
+                    while (cellIterator.hasNext()) {
+                        Cell cell = cellIterator.next();
+                        switch (cell.getColumnIndex()) {
+                            case SKU:
+                                produto.setSku(cell.getStringCellValue());
+                                break;
+                            case NOME:
+                                produto.setNome(cell.getStringCellValue());
+                                break;
+                            case EAN13:
+                                produto.setEan13(pegaValorDaCelula(cell));
+                                break;
+                            case DUN14:
+                                produto.setDun14(pegaValorDaCelula(cell));
+                                break;
+                            case QTD_DUN14:
+                                produto.setQtdDun14(Integer.valueOf(pegaValorDaCelula(cell).replace(".", "")));
+                                break;
+                            case LOCALIZACAO:
+                                produto.setLocalizacao(pegaValorDaCelula(cell));
+                                break;
+                            case QTD_ESTOQUE:
+                                produto.setQtdEstoque(0);
+                                break;
+                        }
                     }
                 }
+
+            } else {
+
+                while (rowIterator.hasNext()) {
+                    Row row = rowIterator.next();
+                    Iterator<Cell> cellIterator = row.cellIterator();
+                    produto = new Produto();
+                    listProdutos.add(produto);
+                    while (cellIterator.hasNext()) {
+                        Cell cell = cellIterator.next();
+                        switch (cell.getColumnIndex()) {
+                            case SKU:
+                                produto.setSku(cell.getStringCellValue());
+                                break;
+                            case NOME:
+                                produto.setNome(cell.getStringCellValue());
+                                break;
+                            case EAN13:
+                                produto.setEan13(pegaValorDaCelula(cell));
+                                break;
+                            case DUN14:
+                                produto.setDun14(pegaValorDaCelula(cell));
+                                break;
+                            case QTD_DUN14:
+                                produto.setQtdDun14(Integer.valueOf(pegaValorDaCelula(cell).replace(".", "")));
+                                break;
+                            case LOCALIZACAO:
+                                produto.setLocalizacao(pegaValorDaCelula(cell));
+                                break;
+                            case QTD_ESTOQUE:
+                                produto.setQtdEstoque(Integer.valueOf(pegaValorDaCelula(cell)));
+                                break;
+                        }
+                    }
+                }
+
             }
+            
+            
+
             for (int i = 0; i < listProdutos.size(); i++) {
                 Produto get = listProdutos.get(i);
                 get.setEan13(get.getEan13().replace(".", ""));
                 get.setDun14(get.getDun14().replace(".", ""));
+                get.setEan13(get.getEan13().substring(0, get.getEan13().length()-3));
+                get.setDun14(get.getDun14().substring(0, get.getDun14().length()-3));
                 listProdutos.set(i, get);
             }
             for (int i = 0; i < listProdutos.size(); i++) {
@@ -161,10 +193,11 @@ public class TelaEscolherArquivoControl {
 
             }
             arquivo.close();
+            JOptionPane.showMessageDialog(telaEscolherArquivo, "Arquivo excel lido com sucesso!");
 
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Arquivo Excel não encontrado!");
+            System.out.println("Arquivo Excel não está com os padrões corretos, verifique!");
         }
     }
 
@@ -216,7 +249,7 @@ public class TelaEscolherArquivoControl {
 
         try {
             FileOutputStream out
-                    = new FileOutputStream(new File(enderecoDestino+".xlsx"));
+                    = new FileOutputStream(new File(enderecoDestino + ".xlsx"));
             workbook.write(out);
             out.close();
             System.out.println("Arquivo Excel criado com sucesso!");
@@ -240,17 +273,19 @@ public class TelaEscolherArquivoControl {
      * @return the value of the excel-call as string (the formula will be
      * executed)
      */
-    static String pegaValorDaCelula(XSSFWorkbook workbook, Cell cell) {
-        FormulaEvaluator evaluator = workbook.getCreationHelper().createFormulaEvaluator();
-        CellValue cellValue = evaluator.evaluate(cell);
+    static String pegaValorDaCelula(Cell cell) {
 
-        switch (cellValue.getCellType()) {
+        switch (cell.getCellType()) {
             case BOOLEAN:
-                return String.valueOf(cellValue.getBooleanValue());
+                return String.valueOf(cell.getBooleanCellValue());
             case NUMERIC:
-                return String.valueOf(cellValue.getNumberValue());
+                return String.valueOf(cell.getNumericCellValue());
             case STRING:
-                return cellValue.getStringValue();
+                return String.valueOf(cell.getStringCellValue());
+            case BLANK:
+                return "0";
+            case _NONE:
+                return "0";
             default:
                 return null;
         }

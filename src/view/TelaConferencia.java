@@ -6,6 +6,7 @@
 package view;
 
 import control.TelaConferenciaControl;
+import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -49,25 +50,29 @@ public class TelaConferencia extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         tfCodigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        tfNome = new javax.swing.JTextField();
+        btAdicionar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProdutos = new javax.swing.JTable();
-        btGravar = new javax.swing.JButton();
+        btExportarExcel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Produto"));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("QTD");
+        jLabel1.setText("QUANTIDADE");
+
+        tfCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfCodigoKeyReleased(evt);
+            }
+        });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("EAN13 / DUN 14");
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("NOME");
+        btAdicionar.setText("ADICIONAR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -76,35 +81,28 @@ public class TelaConferencia extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfQuantidade)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                    .addComponent(tfQuantidade))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tfCodigo)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tfNome)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btAdicionar)
+                .addGap(376, 376, 376))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btAdicionar))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -129,7 +127,7 @@ public class TelaConferencia extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1027, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -140,7 +138,12 @@ public class TelaConferencia extends javax.swing.JFrame {
                 .addGap(143, 143, 143))
         );
 
-        btGravar.setText("GRAVAR");
+        btExportarExcel.setText("Exportar Excel");
+        btExportarExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExportarExcelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,8 +157,8 @@ public class TelaConferencia extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btGravar)
-                .addGap(20, 20, 20))
+                .addComponent(btExportarExcel)
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,13 +167,24 @@ public class TelaConferencia extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btGravar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btExportarExcel)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btExportarExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExportarExcelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btExportarExcelActionPerformed
+
+    private void tfCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCodigoKeyReleased
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            telaConferenciaControl.contarUmNovoItemAction();
+        }
+    }//GEN-LAST:event_tfCodigoKeyReleased
 
     /**
      * @param args the command line arguments
@@ -208,25 +222,24 @@ public class TelaConferencia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btGravar;
+    private javax.swing.JButton btAdicionar;
+    private javax.swing.JButton btExportarExcel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblProdutos;
     private javax.swing.JTextField tfCodigo;
-    private javax.swing.JTextField tfNome;
     private javax.swing.JTextField tfQuantidade;
     // End of variables declaration//GEN-END:variables
 
     public JButton getBtGravar() {
-        return btGravar;
+        return btExportarExcel;
     }
 
     public void setBtGravar(JButton btGravar) {
-        this.btGravar = btGravar;
+        this.btExportarExcel = btGravar;
     }
 
     public JLabel getjLabel1() {
@@ -243,14 +256,6 @@ public class TelaConferencia extends javax.swing.JFrame {
 
     public void setjLabel2(JLabel jLabel2) {
         this.jLabel2 = jLabel2;
-    }
-
-    public JLabel getjLabel3() {
-        return jLabel3;
-    }
-
-    public void setjLabel3(JLabel jLabel3) {
-        this.jLabel3 = jLabel3;
     }
 
     public JPanel getjPanel1() {
@@ -293,14 +298,6 @@ public class TelaConferencia extends javax.swing.JFrame {
         this.tfCodigo = tfCodigo;
     }
 
-    public JTextField getTfNome() {
-        return tfNome;
-    }
-
-    public void setTfNome(JTextField tfNome) {
-        this.tfNome = tfNome;
-    }
-
     public JTextField getTfQuantidade() {
         return tfQuantidade;
     }
@@ -308,6 +305,8 @@ public class TelaConferencia extends javax.swing.JFrame {
     public void setTfQuantidade(JTextField tfQuantidade) {
         this.tfQuantidade = tfQuantidade;
     }
+    
+    
 
 
 }
