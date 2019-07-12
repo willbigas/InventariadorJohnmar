@@ -14,9 +14,6 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import model.Produto;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.CellValue;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -50,6 +47,7 @@ public class TelaEscolherArquivoControl {
         telaEscolherArquivo = new TelaEscolherArquivo(this);
         telaEscolherArquivo.setLocationRelativeTo(null);
         telaEscolherArquivo.setVisible(true);
+        telaEscolherArquivo.getBtConferir().setEnabled(false);
     }
 
     public void acionaAberturaDeArquivo() {
@@ -155,13 +153,13 @@ public class TelaEscolherArquivoControl {
                                 produto.setDun14(pegaValorDaCelula(cell));
                                 break;
                             case QTD_DUN14:
-                                produto.setQtdDun14(Integer.valueOf(pegaValorDaCelula(cell).replace(".", "")));
+                                produto.setQtdDun14((int) cell.getNumericCellValue());
                                 break;
                             case LOCALIZACAO:
                                 produto.setLocalizacao(pegaValorDaCelula(cell));
                                 break;
                             case QTD_ESTOQUE:
-                                produto.setQtdEstoque(Integer.valueOf(pegaValorDaCelula(cell).replace(".", "")));
+                                produto.setQtdEstoque((int) cell.getNumericCellValue());
                                 break;
 
                         }
@@ -184,11 +182,14 @@ public class TelaEscolherArquivoControl {
                 System.out.println(listProduto);
             }
             arquivo.close();
+            telaEscolherArquivo.getBtConferir().setEnabled(true);
             JOptionPane.showMessageDialog(telaEscolherArquivo, "Arquivo excel lido com sucesso!");
 
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Arquivo Excel não está com os padrões corretos, verifique!");
+            JOptionPane.showMessageDialog(telaEscolherArquivo, "Arquivo Excel não está com os padrões corretos, verifique!");
+            return;
+
         }
     }
 
@@ -197,7 +198,25 @@ public class TelaEscolherArquivoControl {
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheetAlunos = workbook.createSheet("Alunos");
 
-        int rownum = 0;
+        Row rowCabeçalho = sheetAlunos.createRow(0);
+        Cell cabecalhoSku = rowCabeçalho.createCell(0);
+        cabecalhoSku.setCellValue("SKU");
+        Cell cabecalhoNome = rowCabeçalho.createCell(1);
+        cabecalhoNome.setCellValue("NOME");
+        Cell cabecalhoEAN13 = rowCabeçalho.createCell(2);
+        cabecalhoEAN13.setCellValue("EAN13");
+        Cell cabecalhoDUN14 = rowCabeçalho.createCell(3);
+        cabecalhoDUN14.setCellValue("DUN14");
+        Cell cabecalhoQtdDun14 = rowCabeçalho.createCell(4);
+        cabecalhoQtdDun14.setCellValue("QTD CX");
+        Cell cabecalhoLocalizacao = rowCabeçalho.createCell(5);
+        cabecalhoLocalizacao.setCellValue("LOCALIZACAO");
+        Cell cabecalhoQtdEstoque = rowCabeçalho.createCell(6);
+        cabecalhoQtdEstoque.setCellValue("ESTOQUE");
+        Cell cabecalhoQtdConferida = rowCabeçalho.createCell(7);
+        cabecalhoQtdConferida.setCellValue("CONFERIDO");
+
+        int rownum = 1;
         for (Produto produto : produtos) {
             Row row = sheetAlunos.createRow(rownum++);
             int cellnum = 0;

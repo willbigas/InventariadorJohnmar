@@ -7,7 +7,7 @@ package view;
 
 import control.TelaConferenciaControl;
 import control.TelaEscolherArquivoControl;
-
+import javax.swing.JButton;
 
 /**
  *
@@ -16,12 +16,14 @@ import control.TelaEscolherArquivoControl;
 public class TelaEscolherArquivo extends javax.swing.JFrame {
 
     TelaEscolherArquivoControl controlArquivo;
+
     /**
      * Creates new form TelaPrincipal
      */
     public TelaEscolherArquivo() {
         initComponents();
     }
+
     /**
      * Creates new form TelaPrincipal
      */
@@ -39,35 +41,35 @@ public class TelaEscolherArquivo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btGerarConversao = new javax.swing.JButton();
+        btLerArquivo = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btSelecionarArquivo = new javax.swing.JButton();
+        btConferir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inventariador Johnmar");
 
-        btGerarConversao.setText("LER");
-        btGerarConversao.addActionListener(new java.awt.event.ActionListener() {
+        btLerArquivo.setText("LER");
+        btLerArquivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btGerarConversaoActionPerformed(evt);
+                btLerArquivoActionPerformed(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setText("Ler Arquivo");
 
-        jButton1.setText("Arquivo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btSelecionarArquivo.setText("Arquivo");
+        btSelecionarArquivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btSelecionarArquivoActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Conferir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btConferir.setText("Conferir");
+        btConferir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btConferirActionPerformed(evt);
             }
         });
 
@@ -83,11 +85,11 @@ public class TelaEscolherArquivo extends javax.swing.JFrame {
                         .addGap(98, 98, 98))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2)
+                            .addComponent(btConferir)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btSelecionarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
-                                .addComponent(btGerarConversao)))
+                                .addComponent(btLerArquivo)))
                         .addGap(19, 19, 19))))
         );
         layout.setVerticalGroup(
@@ -97,31 +99,31 @@ public class TelaEscolherArquivo extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(btGerarConversao))
+                    .addComponent(btSelecionarArquivo)
+                    .addComponent(btLerArquivo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btConferir)
                 .addGap(19, 19, 19))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btGerarConversaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGerarConversaoActionPerformed
+    private void btLerArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLerArquivoActionPerformed
         // TODO add your handling code here:
 //        controlArquivo.lerArquivoAction();
-    controlArquivo.lerArquivoPeloExcelAction();
-    }//GEN-LAST:event_btGerarConversaoActionPerformed
+        controlArquivo.lerArquivoPeloExcelAction();
+    }//GEN-LAST:event_btLerArquivoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btSelecionarArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionarArquivoActionPerformed
         // TODO add your handling code here:
         controlArquivo.acionaAberturaDeArquivo();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btSelecionarArquivoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btConferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConferirActionPerformed
         // TODO add your handling code here:
         controlArquivo.chamarTelaConferenciaAction();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btConferirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,9 +164,34 @@ public class TelaEscolherArquivo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btGerarConversao;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btConferir;
+    private javax.swing.JButton btLerArquivo;
+    private javax.swing.JButton btSelecionarArquivo;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getBtConferir() {
+        return btConferir;
+    }
+
+    public void setBtConferir(JButton btConferir) {
+        this.btConferir = btConferir;
+    }
+
+    public JButton getBtLerArquivo() {
+        return btLerArquivo;
+    }
+
+    public void setBtLerArquivo(JButton btLerArquivo) {
+        this.btLerArquivo = btLerArquivo;
+    }
+
+    public JButton getBtSelecionarArquivo() {
+        return btSelecionarArquivo;
+    }
+
+    public void setBtSelecionarArquivo(JButton btSelecionarArquivo) {
+        this.btSelecionarArquivo = btSelecionarArquivo;
+    }
+
 }

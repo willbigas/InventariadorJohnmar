@@ -44,7 +44,15 @@ public class TelaConferenciaControl {
             JOptionPane.showMessageDialog(null, "Por Favor, coloque uma quantidade!");
             return;
         }
-        Integer quantidade = Integer.valueOf(telaConferencia.getTfQuantidade().getText());
+        Integer quantidade = null;
+        try {
+            quantidade = Integer.valueOf(telaConferencia.getTfQuantidade().getText());
+        } catch (NumberFormatException numberFormatException) {
+            JOptionPane.showMessageDialog(telaConferencia, "O campo quantidade não é um numero valido, Verifique!");
+            quantidade = null;
+            return;
+        }
+
         produto = processaQuantidades(quantidade);
 
     }
@@ -65,7 +73,6 @@ public class TelaConferenciaControl {
                 }
                 produtoBuscado.setQtdConferida(produtoBuscado.getQtdConferida() + (quantidade * 1));
                 produtoTableModel.atualizar(i, produtoBuscado);
-                continue;
             }
             if (codigo.equalsIgnoreCase(umProduto.getDun14())) {
                 produtoBuscado = umProduto;
@@ -74,8 +81,11 @@ public class TelaConferenciaControl {
                     produtoBuscado.setQtdConferida(0);
                 }
                 produtoBuscado.setQtdConferida(produtoBuscado.getQtdConferida() + (quantidade * produtoBuscado.getQtdDun14()));
-                produtoTableModel.atualizar(i, produto);
-                produtosParaExportar.add(produto);
+                produtoTableModel.atualizar(i, produtoBuscado);
+                produtosParaExportar.add(produtoBuscado);
+            } else {
+                JOptionPane.showMessageDialog(telaConferencia, "Código não encontrado na base!");
+                return null;
             }
         }
         return produtoBuscado;
@@ -84,7 +94,7 @@ public class TelaConferenciaControl {
 
     public void exportarListaParaExcelAction() {
         TelaEscolherArquivoControl.acionaSalvamentoDeArquivo(telaConferencia);
-        TelaEscolherArquivoControl.escreverArquivoParaExcel(produtosParaExportar);
+        TelaEscolherArquivoControl.escreverArquivoParaExcel(produtoTableModel.retornaLista());
     }
 
 }
