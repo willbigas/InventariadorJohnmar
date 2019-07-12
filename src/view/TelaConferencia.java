@@ -14,13 +14,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import uteis.InterfaceJanela;
 
 /**
  *
  * @author william.mauro
  */
 public class TelaConferencia extends javax.swing.JFrame {
-    
+
     TelaConferenciaControl telaConferenciaControl;
 
     /**
@@ -29,12 +30,14 @@ public class TelaConferencia extends javax.swing.JFrame {
     public TelaConferencia() {
         initComponents();
     }
+
     /**
      * Creates new form TelaConferencia
      */
     public TelaConferencia(TelaConferenciaControl telaConferenciaControl) {
         initComponents();
-        this.telaConferenciaControl  = telaConferenciaControl;
+        this.telaConferenciaControl = telaConferenciaControl;
+        InterfaceJanela.alteraIconePrincipalDoFrame(this, "/img/favicon_32x32.png");
     }
 
     /**
@@ -59,10 +62,17 @@ public class TelaConferencia extends javax.swing.JFrame {
         btExportarExcel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Conferência de mercadoria");
+        setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Produto"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
         tfQuantidade.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tfQuantidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfQuantidadeActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -79,8 +89,10 @@ public class TelaConferencia extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("EAN13 / DUN 14");
 
+        btAdicionar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btAdicionar.setText("ADICIONAR");
 
+        jButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jButton1.setText("RECONTAR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -95,7 +107,7 @@ public class TelaConferencia extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tfCodigo)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btAdicionar)
                 .addGap(293, 293, 293)
@@ -118,7 +130,7 @@ public class TelaConferencia extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabela de Produtos"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tabela de Produtos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
         tblProdutos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
@@ -140,17 +152,18 @@ public class TelaConferencia extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1096, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1116, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(143, 143, 143))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
+        btExportarExcel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btExportarExcel.setText("EXPORTAR");
         btExportarExcel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,7 +192,7 @@ public class TelaConferencia extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 367, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btExportarExcel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -199,6 +212,10 @@ public class TelaConferencia extends javax.swing.JFrame {
             telaConferenciaControl.contarUmNovoItemAction();
         }
     }//GEN-LAST:event_tfCodigoKeyReleased
+
+    private void tfQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfQuantidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfQuantidadeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,8 +337,5 @@ public class TelaConferencia extends javax.swing.JFrame {
     public void setTfQuantidade(JTextField tfQuantidade) {
         this.tfQuantidade = tfQuantidade;
     }
-    
-    
-
 
 }

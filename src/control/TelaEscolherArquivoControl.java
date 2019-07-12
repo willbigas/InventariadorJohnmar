@@ -92,6 +92,11 @@ public class TelaEscolherArquivoControl {
     }
 
     public void lerArquivoPeloExcelAction() {
+        if (enderecoOrigem.equals("")) {
+            JOptionPane.showMessageDialog(null, "Erro ao ler Arquivo");
+            return;
+        }
+        
         try {
             FileInputStream arquivo = new FileInputStream(new File(
                     enderecoOrigem));

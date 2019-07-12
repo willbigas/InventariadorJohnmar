@@ -21,7 +21,7 @@ public class ProdutoTableModel extends AbstractTableModel {
     private static final int QTD_CONFERIDA = 7;
 
     private List<Produto> linhas;
-    private String[] COLUNAS = {"SKU", "NOME", "EAN13", "DUN14", "QTD_CX", "LOCALIZACAO" , "ESTOQUE_ATUAL" , "CONFERIDO"};
+    private String[] COLUNAS = {"SKU", "NOME", "EAN13", "DUN14", "CX", "LOCAL" , "ESTOQUE" , "CONFERIDO"};
 
     public ProdutoTableModel() {
         linhas = new ArrayList<>();

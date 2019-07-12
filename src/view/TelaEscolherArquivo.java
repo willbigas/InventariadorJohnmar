@@ -8,6 +8,7 @@ package view;
 import control.TelaConferenciaControl;
 import control.TelaEscolherArquivoControl;
 import javax.swing.JButton;
+import uteis.InterfaceJanela;
 
 /**
  *
@@ -30,6 +31,7 @@ public class TelaEscolherArquivo extends javax.swing.JFrame {
     public TelaEscolherArquivo(TelaEscolherArquivoControl controlArquivo) {
         initComponents();
         this.controlArquivo = controlArquivo;
+        InterfaceJanela.alteraIconePrincipalDoFrame(this, "/img/favicon_32x32.png");
     }
 
     /**
@@ -41,83 +43,111 @@ public class TelaEscolherArquivo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btLerArquivo = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         btSelecionarArquivo = new javax.swing.JButton();
         btConferir = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inventariador Johnmar");
 
-        btLerArquivo.setText("LER");
-        btLerArquivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLerArquivoActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel3.setText("Ler Arquivo");
-
-        btSelecionarArquivo.setText("Arquivo");
+        btSelecionarArquivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/upload_32x32.png"))); // NOI18N
+        btSelecionarArquivo.setText("Carregar Arquivo");
+        btSelecionarArquivo.setBorder(null);
+        btSelecionarArquivo.setBorderPainted(false);
+        btSelecionarArquivo.setContentAreaFilled(false);
         btSelecionarArquivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSelecionarArquivoActionPerformed(evt);
             }
         });
 
+        btConferir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/conferencia_32x32.png"))); // NOI18N
         btConferir.setText("Conferir");
+        btConferir.setBorder(null);
+        btConferir.setBorderPainted(false);
+        btConferir.setContentAreaFilled(false);
         btConferir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btConferirActionPerformed(evt);
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("INVENTARIADOR");
+
+        jPanel1.setBackground(java.awt.Color.gray);
+        jPanel1.setForeground(new java.awt.Color(60, 58, 63));
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logo.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+        );
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("[Carregar excel - Planilha do Microsoft Excel .xlsx]");
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Versão 2012 ou superior");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(98, 98, 98))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btConferir)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btSelecionarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
-                                .addComponent(btLerArquivo)))
-                        .addGap(19, 19, 19))))
+                        .addComponent(btSelecionarArquivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btConferir)
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addGap(29, 29, 29)
+                .addComponent(btSelecionarArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btSelecionarArquivo)
-                    .addComponent(btLerArquivo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addComponent(btConferir)
-                .addGap(19, 19, 19))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btLerArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLerArquivoActionPerformed
-        // TODO add your handling code here:
-//        controlArquivo.lerArquivoAction();
-        controlArquivo.lerArquivoPeloExcelAction();
-    }//GEN-LAST:event_btLerArquivoActionPerformed
-
     private void btSelecionarArquivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionarArquivoActionPerformed
         // TODO add your handling code here:
         controlArquivo.acionaAberturaDeArquivo();
+        controlArquivo.lerArquivoPeloExcelAction();
     }//GEN-LAST:event_btSelecionarArquivoActionPerformed
 
     private void btConferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConferirActionPerformed
@@ -165,9 +195,12 @@ public class TelaEscolherArquivo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btConferir;
-    private javax.swing.JButton btLerArquivo;
     private javax.swing.JButton btSelecionarArquivo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
     public JButton getBtConferir() {
@@ -176,14 +209,6 @@ public class TelaEscolherArquivo extends javax.swing.JFrame {
 
     public void setBtConferir(JButton btConferir) {
         this.btConferir = btConferir;
-    }
-
-    public JButton getBtLerArquivo() {
-        return btLerArquivo;
-    }
-
-    public void setBtLerArquivo(JButton btLerArquivo) {
-        this.btLerArquivo = btLerArquivo;
     }
 
     public JButton getBtSelecionarArquivo() {
