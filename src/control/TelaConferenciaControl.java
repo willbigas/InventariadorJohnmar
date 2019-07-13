@@ -14,6 +14,7 @@ import view.TelaConferencia;
  */
 public class TelaConferenciaControl {
 
+    TocadorDeAudio tocadorDeAudio;
     TelaConferencia telaConferencia;
     ProdutoTableModel produtoTableModel;
     Produto produto;
@@ -35,6 +36,8 @@ public class TelaConferenciaControl {
         produtoTableModel = new ProdutoTableModel();
         produtosDoExcel = produtosRecebidos;
         produtosParaExportar = new ArrayList<>();
+        tocadorDeAudio = new TocadorDeAudio();
+
     }
 
     public void chamarTelaConferencia() {
@@ -75,29 +78,41 @@ public class TelaConferenciaControl {
     }
 
     public void contarUmNovoItemAction() {
-        if (telaConferencia.getTfQuantidade().getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por Favor, coloque uma quantidade!");
+        if (telaConferencia.getTfQuantidade().getText().length() > 6) {
+            JOptionPane.showMessageDialog(telaConferencia, "Quantidade superior ao limite de 6 Digitos [000000]");
             return;
         }
+
         Integer quantidade = null;
+
         try {
-            quantidade = Integer.valueOf(telaConferencia.getTfQuantidade().getText());
+
+            if (telaConferencia.getTfQuantidade().getText().isEmpty()) {
+                quantidade = 1;
+            } else {
+                quantidade = Integer.valueOf(telaConferencia.getTfQuantidade().getText());
+            }
+
         } catch (NumberFormatException numberFormatException) {
             JOptionPane.showMessageDialog(telaConferencia, "O campo quantidade não é um numero valido, Verifique!");
             quantidade = null;
             return;
         }
 
-        produto = processaQuantidades(quantidade);
+        produto = processarUmaConferencia(quantidade);
 
         if (produto == null) {
             JOptionPane.showMessageDialog(telaConferencia, "Código não encontrado!");
+            tocadorDeAudio.tocarAudio(TocadorDeAudio.SOM_FALHA);
             return;
+        } else {
+            limparCampos();
+            tocadorDeAudio.tocarAudio(TocadorDeAudio.SOM_SUCESSO);
         }
 
     }
 
-    public Produto processaQuantidades(Integer quantidade) {
+    public Produto processarUmaConferencia(Integer quantidade) {
         String codigo = telaConferencia.getTfCodigo().getText();
         Produto produtoBuscado = null;
 
@@ -132,6 +147,13 @@ public class TelaConferenciaControl {
     public void exportarListaParaExcelAction() {
         TelaEscolherArquivoControl.acionaSalvamentoDeArquivo(telaConferencia);
         TelaEscolherArquivoControl.escreverArquivoParaExcel(produtoTableModel.retornaLista());
+    }
+
+    public void limparCampos() {
+        telaConferencia.getTfCodigo().setText("");
+        telaConferencia.getTfQuantidade().setText("");
+        telaConferencia.getTfCodigo().requestFocus();
+
     }
 
 }
