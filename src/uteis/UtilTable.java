@@ -1,5 +1,7 @@
 package uteis;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Point;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -32,8 +34,8 @@ public class UtilTable {
         criandoAlinhamentosDaJtable();
         tableModel.getColumnModel().getColumn(coluna).setCellRenderer(centralizado);
     }
-    
-     /**
+
+    /**
      * Alinha o conteudo da tabela a direita
      *
      * @param tableModel
@@ -43,7 +45,8 @@ public class UtilTable {
         criandoAlinhamentosDaJtable();
         tableModel.getColumnModel().getColumn(coluna).setCellRenderer(direita);
     }
-     /**
+
+    /**
      * Alinha o conteudo da tabela a esquerda
      *
      * @param tableModel
@@ -93,5 +96,21 @@ public class UtilTable {
         } else {
             return -1;
         }
+    }
+
+    public static void mudarCorDeFundoColuna(int indiceColuna, Color cor, JTable tableModel) {
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setHorizontalAlignment(SwingConstants.CENTER);
+        Component c = renderer;
+        tableModel.getColumnModel().getColumn(indiceColuna).setCellRenderer(renderer);
+        c.setBackground(cor);
+    }
+
+    public static void mudarCorDeFonteColuna(int indiceColuna, Color cor, JTable tableModel) {
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setHorizontalAlignment(SwingConstants.CENTER);
+        Component c = renderer;
+        tableModel.getColumnModel().getColumn(indiceColuna).setCellRenderer(renderer);
+        c.setForeground(cor);
     }
 }

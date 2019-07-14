@@ -1,8 +1,13 @@
 package control;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 import model.Produto;
 import model.tablemodel.ProdutoTableModel;
 import uteis.UtilTable;
@@ -21,6 +26,8 @@ public class TelaConferenciaControl {
     List<Produto> produtosDoExcel;
     List<Produto> produtosParaExportar;
 
+    private final Color COR_VERDE = new Color(0, 204, 0);
+
     private static final int SKU = 0;
     private static final int NOME = 1;
     private static final int EAN13 = 2;
@@ -37,7 +44,6 @@ public class TelaConferenciaControl {
         produtosDoExcel = produtosRecebidos;
         produtosParaExportar = new ArrayList<>();
         tocadorDeAudio = new TocadorDeAudio();
-
     }
 
     public void chamarTelaConferencia() {
@@ -46,6 +52,7 @@ public class TelaConferenciaControl {
         inicializaTableModelDeProdutos();
         redimensionarTamanhosDaTabela();
         centralizarConteudosDaTabela();
+        UtilTable.mudarCorDeFonteColuna(QTD_CONFERIDO, COR_VERDE, telaConferencia.getTblProdutos());
         telaConferencia.setVisible(true);
 
     }
@@ -155,5 +162,4 @@ public class TelaConferenciaControl {
         telaConferencia.getTfCodigo().requestFocus();
 
     }
-
 }

@@ -1,6 +1,8 @@
 package model.tablemodel;
 
+import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 import model.Produto;
@@ -21,7 +23,7 @@ public class ProdutoTableModel extends AbstractTableModel {
     private static final int QTD_CONFERIDA = 7;
 
     private List<Produto> linhas;
-    private String[] COLUNAS = {"SKU", "NOME", "EAN13", "DUN14", "CX", "LOCAL" , "ESTOQUE" , "CONFERIDO"};
+    private String[] COLUNAS = {"SKU", "NOME", "EAN13", "DUN14", "CX", "LOCAL", "ESTOQUE", "CONFERIDO"};
 
     public ProdutoTableModel() {
         linhas = new ArrayList<>();
@@ -170,9 +172,11 @@ public class ProdutoTableModel extends AbstractTableModel {
         linhas.clear();
         fireTableDataChanged(); // atualiza toda tabela.
     }
-    
-    public List<Produto> retornaLista(){
+
+    public List<Produto> retornaLista() {
         return this.linhas;
     }
+    
+    
 
 }
