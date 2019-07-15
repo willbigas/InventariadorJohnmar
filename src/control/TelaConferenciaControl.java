@@ -105,8 +105,8 @@ public class TelaConferenciaControl {
         produto = processarUmaConferencia(quantidade);
 
         if (produto == null) {
-            JOptionPane.showMessageDialog(telaConferencia, "Código não encontrado!");
             tocadorDeAudio.tocarAudio(TocadorDeAudio.SOM_FALHA);
+            JOptionPane.showMessageDialog(telaConferencia, "Código não encontrado!");
             return;
         } else {
             limparCampos();
