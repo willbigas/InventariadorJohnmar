@@ -64,11 +64,6 @@ public class TelaConferencia extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Conferência de mercadoria");
         setResizable(false);
-        addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                formKeyReleased(evt);
-            }
-        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
 
@@ -222,6 +217,9 @@ public class TelaConferencia extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_LEFT) {
             tfQuantidade.requestFocus();
         }
+        if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            telaConferenciaControl.limparCampos();
+        }
     }//GEN-LAST:event_tfCodigoKeyReleased
 
     private void tfCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCodigoKeyPressed
@@ -230,17 +228,13 @@ public class TelaConferencia extends javax.swing.JFrame {
 
     private void tfQuantidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfQuantidadeKeyReleased
         // TODO add your handling code here:
-         if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
+        if (evt.getKeyCode() == KeyEvent.VK_RIGHT) {
             tfCodigo.requestFocus();
         }
-    }//GEN-LAST:event_tfQuantidadeKeyReleased
-
-    private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
-        // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ESCAPE) {
             telaConferenciaControl.limparCampos();
         }
-    }//GEN-LAST:event_formKeyReleased
+    }//GEN-LAST:event_tfQuantidadeKeyReleased
 
     /**
      * @param args the command line arguments

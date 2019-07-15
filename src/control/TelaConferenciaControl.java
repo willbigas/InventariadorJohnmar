@@ -1,13 +1,9 @@
 package control;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
 import model.Produto;
 import model.tablemodel.ProdutoTableModel;
 import uteis.UtilTable;
@@ -159,7 +155,7 @@ public class TelaConferenciaControl {
     public void limparCampos() {
         telaConferencia.getTfCodigo().setText("");
         telaConferencia.getTfQuantidade().setText("");
-        telaConferencia.getTfCodigo().requestFocus();
+        telaConferencia.getTfQuantidade().requestFocus();
 
     }
 }
