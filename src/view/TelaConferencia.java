@@ -54,7 +54,6 @@ public class TelaConferencia extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         tfCodigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        btAdicionar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -92,9 +91,6 @@ public class TelaConferencia extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("EAN13 / DUN 14");
 
-        btAdicionar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btAdicionar.setText("ADICIONAR");
-
         jButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jButton1.setText("RECONTAR");
 
@@ -111,9 +107,7 @@ public class TelaConferencia extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tfCodigo)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btAdicionar)
-                .addGap(293, 293, 293)
+                .addGap(412, 412, 412)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -128,7 +122,6 @@ public class TelaConferencia extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btAdicionar)
                     .addComponent(jButton1))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -272,7 +265,6 @@ public class TelaConferencia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btAdicionar;
     private javax.swing.JButton btExportarExcel;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

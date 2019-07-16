@@ -80,9 +80,7 @@
                       <Component id="tfCodigo" max="32767" attributes="0"/>
                       <Component id="jLabel2" pref="464" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="btAdicionar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="293" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="412" max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -100,7 +98,6 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="tfQuantidade" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btAdicionar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="15" max="32767" attributes="0"/>
@@ -146,14 +143,6 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="EAN13 / DUN 14"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btAdicionar">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="ADICIONAR"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
