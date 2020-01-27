@@ -114,6 +114,61 @@ public class TelaConferenciaControl {
         }
 
     }
+    
+    
+     public void reinicializarContagemDoItem() {
+        if (telaConferencia.getTfQuantidade().getText().length() > 6) {
+            JOptionPane.showMessageDialog(telaConferencia, "Quantidade superior ao limite de 6 Digitos [000000]");
+            return;
+        }
+
+        Integer quantidade = 0;
+
+        produto = reiniciar(quantidade);
+
+        if (produto == null) {
+            tocadorDeAudio.tocarAudio(TocadorDeAudio.SOM_FALHA);
+            JOptionPane.showMessageDialog(telaConferencia, "Código não encontrado!");
+            return;
+        } else {
+            limparCampos();
+            tocadorDeAudio.tocarAudio(TocadorDeAudio.SOM_SUCESSO);
+        }
+
+    }
+     
+     public Produto reiniciar(Integer quantidade) {
+        String codigo = telaConferencia.getTfCodigo().getText();
+        Produto produtoBuscado = null;
+
+        for (int i = 0; i < produtosDoExcel.size(); i++) {
+            Produto umProduto = produtosDoExcel.get(i);
+            
+            if (codigo.equalsIgnoreCase(umProduto.getEan13())) {
+                produtoBuscado = umProduto;
+                System.out.println("Produto encontrado pelo EAN13:" + produtoBuscado);
+                indiceDoProdutoNaLista = i;
+                if (produtoBuscado.getQtdConferida() == null) {
+                    produtoBuscado.setQtdConferida(0);
+                }
+                produtoBuscado.setQtdConferida(0);
+                produtoTableModel.atualizar(i, produtoBuscado);
+            }
+            if (codigo.equalsIgnoreCase(umProduto.getDun14())) {
+                produtoBuscado = umProduto;
+                System.out.println("Produto encontrado pelo DUN14:" + produtoBuscado);
+                if (produtoBuscado.getQtdConferida() == null) {
+                    produtoBuscado.setQtdConferida(0);
+                }
+                produtoBuscado.setQtdConferida(0);
+                produtoTableModel.atualizar(i, produtoBuscado);
+                produtosParaExportar.add(produtoBuscado);
+            }
+        }
+        return produtoBuscado;
+     }
+    
+    
 
     public Produto processarUmaConferencia(Integer quantidade) {
         String codigo = telaConferencia.getTfCodigo().getText();
@@ -121,7 +176,7 @@ public class TelaConferenciaControl {
 
         for (int i = 0; i < produtosDoExcel.size(); i++) {
             Produto umProduto = produtosDoExcel.get(i);
-
+            
             if (codigo.equalsIgnoreCase(umProduto.getEan13())) {
                 produtoBuscado = umProduto;
                 System.out.println("Produto encontrado pelo EAN13:" + produtoBuscado);

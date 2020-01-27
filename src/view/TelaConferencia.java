@@ -54,7 +54,7 @@ public class TelaConferencia extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         tfCodigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        buttonRecontar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProdutos = new javax.swing.JTable();
@@ -64,7 +64,7 @@ public class TelaConferencia extends javax.swing.JFrame {
         setTitle("Conferência de mercadoria");
         setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Produto"));
 
         tfQuantidade.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfQuantidade.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -91,8 +91,13 @@ public class TelaConferencia extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("EAN13 / DUN 14");
 
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jButton1.setText("RECONTAR");
+        buttonRecontar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        buttonRecontar.setText("RECONTAR");
+        buttonRecontar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRecontarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,7 +113,7 @@ public class TelaConferencia extends javax.swing.JFrame {
                     .addComponent(tfCodigo)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
                 .addGap(412, 412, 412)
-                .addComponent(jButton1)
+                .addComponent(buttonRecontar)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -122,11 +127,11 @@ public class TelaConferencia extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(buttonRecontar))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tabela de Produtos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabela de Produtos"));
 
         tblProdutos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
@@ -229,6 +234,11 @@ public class TelaConferencia extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tfQuantidadeKeyReleased
 
+    private void buttonRecontarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecontarActionPerformed
+        // TODO add your handling code here:
+        telaConferenciaControl.reinicializarContagemDoItem();
+    }//GEN-LAST:event_buttonRecontarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -266,7 +276,7 @@ public class TelaConferencia extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btExportarExcel;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton buttonRecontar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
