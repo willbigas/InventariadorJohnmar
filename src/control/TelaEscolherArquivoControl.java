@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import model.Produto;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -96,7 +97,7 @@ public class TelaEscolherArquivoControl {
             JOptionPane.showMessageDialog(null, "Erro ao ler Arquivo");
             return;
         }
-        
+
         try {
             FileInputStream arquivo = new FileInputStream(new File(
                     enderecoOrigem));
@@ -146,6 +147,7 @@ public class TelaEscolherArquivoControl {
                         Cell cell = cellIterator.next();
                         switch (cell.getColumnIndex()) {
                             case SKU:
+                                cell.setCellType(CellType.STRING);
                                 produto.setSku(cell.getStringCellValue());
                                 break;
                             case NOME:
@@ -180,6 +182,27 @@ public class TelaEscolherArquivoControl {
                 get.setDun14(get.getDun14().replace(".", ""));
                 get.setEan13(get.getEan13().substring(0, get.getEan13().length() - 3));
                 get.setDun14(get.getDun14().substring(0, get.getDun14().length() - 3));
+
+                if (get.getDun14().startsWith("789")) {
+                    get.setDun14("0" + get.getDun14());
+                }
+
+                if (get.getEan13().length() == 12) {
+                    get.setEan13(get.getEan13() + "0");
+                }
+
+                if (get.getEan13().length() == 11) {
+                    get.setEan13(get.getEan13() + "00");
+                }
+
+                if (get.getDun14().length() == 13) {
+                    get.setDun14(get.getDun14() + "0");
+                }
+
+                if (get.getDun14().length() == 11) {
+                    get.setDun14(get.getDun14() + "000");
+                }
+
                 listProdutos.set(i, get);
             }
 
