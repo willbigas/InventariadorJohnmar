@@ -12,7 +12,7 @@ import javazoom.jl.player.Player;
  * @author Will
  */
 public class TocadorDeAudio {
-    
+
     public static String SOM_SUCESSO = "/audios/sucess.mp3";
     public static String SOM_FALHA = "/audios/fail.mp3";
 
@@ -40,13 +40,8 @@ public class TocadorDeAudio {
     }
 
     public void tocarAudio(String url) {
-        URI caminho = null;
-        try {
-
-            caminho = getClass().getResource(url).toURI();
-        } catch (URISyntaxException uRISyntaxException) {
-        }
-        File arquivo = new File(caminho);
+        String path = System.getProperty("user.dir")+url;
+        File arquivo = new File(path);
         TocadorDeAudio musica = new TocadorDeAudio();
         musica.tocar(arquivo);
         musica.run();
